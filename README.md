@@ -1,78 +1,85 @@
-# 🔐 AWS IAM Project 3 – Group Policy & Least Privilege Enforcement
+# 🔐 IAM Project 3 – EC2 AssumeRole with S3 ReadOnlyAccess
 
-## 📌 Project Overview
-This project demonstrates how to implement **IAM Group-based permissions** using AWS IAM.  
-The goal was to validate the **Principle of Least Privilege** by attaching a read-only S3 policy to a group, adding users to it, and testing access behavior.
+This project demonstrates how to securely grant an EC2 instance read-only access to an S3 bucket using IAM roles and policies, following the principle of least privilege. The process includes creating the IAM role, assigning the correct trust relationship, attaching the role to the EC2 instance, and testing access behavior using AWS CLI.
 
 ---
 
-## 🛠️ What I Did
-1. Created an IAM group called `Testers`.
-2. Attached the managed policy `AmazonS3ReadOnlyAccess` to the group.
-3. Created IAM users and added them to the group.
-4. Logged in as the test users and performed:
-   - ✅ Read operations on S3
-   - ❌ Write operations (upload/delete) — blocked
-5. Verified permission enforcement through direct AWS Console testing.
+## 📌 Project Goals
+
+- 🔸 Create an IAM role with `AmazonS3ReadOnlyAccess`
+- 🔸 Attach the role to an EC2 instance
+- 🔸 Use the EC2 instance to list and read S3 objects
+- 🔸 Verify that write/delete actions are denied
+- 🔸 Enforce least privilege access across services
 
 ---
 
-## ✅ Test Results
+## 🧠 Concepts Practiced
 
-| Action Tested             | Result     | Screenshot |
-|---------------------------|------------|------------|
-| IAM Group Created         | ✅ Success  | [📸 View](./screenshots/iam-group-created.png) |
-| Users Added to Group      | ✅ Success  | [📸 View](./screenshots/user-added-group.png) |
-| Group Permissions Verified| ✅ Success  | [📸 View](./screenshots/group-permissions.png) |
-| Read Access to S3         | ✅ Success  | [📸 View](./screenshots/s3-read-success.png) |
-| Upload to S3 Attempt      | ❌ Denied   | [📸 View](./screenshots/s3-upload-blocked.png) |
-| Policy Confirmed in User  | ✅ Verified | [📸 View](./screenshots/policy-verified.png) |
+- IAM Role and Trust Relationship configuration  
+- Role-based EC2 permissions  
+- S3 access control via managed policies  
+- Testing permissions using the AWS Console and CLI  
+- AWS resource segregation and security enforcement  
 
 ---
 
-## 🖼️ Screenshot Previews
+## 🛠️ Technologies Used
 
-| Description | Preview |
-|-------------|---------|
-| IAM Group Creation | [<img src="./screenshots/iam-group-created.png" width="200"/>](./screenshots/iam-group-created.png) |
-| User Added to Group | [<img src="./screenshots/user-added-group.png" width="200"/>](./screenshots/user-added-group.png) |
-| Group Permissions | [<img src="./screenshots/group-permissions.png" width="200"/>](./screenshots/group-permissions.png) |
-| Policy Verified in User | [<img src="./screenshots/policy-verified.png" width="200"/>](./screenshots/policy-verified.png) |
-| S3 Read Success | [<img src="./screenshots/s3-read-success.png" width="200"/>](./screenshots/s3-read-success.png) |
-| S3 Upload Blocked | [<img src="./screenshots/s3-upload-blocked.png" width="200"/>](./screenshots/s3-upload-blocked.png) |
+- **AWS IAM**
+- **Amazon EC2**
+- **Amazon S3**
+- **AWS CLI**
+- **AWS Management Console**
+- **MacBook Terminal (zsh)**
 
 ---
 
-## 🧰 AWS Services Used
+## 🧪 Skills Demonstrated
 
-- **IAM** – Identity and Access Management
-- **S3** – Simple Storage Service (for testing access)
-- **AWS Console** – Used to configure and test
-
----
-
-## 🔐 Security Concepts Demonstrated
-
-- IAM Group-based Permission Assignment
-- Use of AWS Managed Policies
-- Role-based Access Control (RBAC)
-- Least Privilege Enforcement
-- Access Validation through Simulation
+- Identity-based access control  
+- IAM role creation and permission boundaries  
+- EC2 instance setup and role association  
+- S3 bucket permission testing  
+- Screenshot documentation and GitHub project structuring  
 
 ---
 
-## 📁 Project Structure
+## 📸 Screenshot Walkthrough
 
-aws-iam-project3/
-├── README.md
-└── screenshots/
-├── iam-group-created.png
-├── user-added-group.png
-├── group-permissions.png
-├── policy-verified.png
-├── s3-read-success.png
-└── s3-upload-blocked.png
+| Step | Description | Preview |
+|------|-------------|---------|
+| 1 | EC2 Instance Launched | [<img src="screenshots/ec2-instance.1.png" width="200"/>](screenshots/ec2-instance.1.png) |
+| 2 | EC2 Instance Configuration Details | [<img src="screenshots/ec2-instance.2.png" width="200"/>](screenshots/ec2-instance.2.png) |
+| 3 | Launch Confirmation | [<img src="screenshots/ec2-instance.3.png" width="200"/>](screenshots/ec2-instance.3.png) |
+| 4 | EC2 Dashboard Showing Running Instance | [<img src="screenshots/ec2-instance.4.png" width="200"/>](screenshots/ec2-instance.4.png) |
+| 5 | IAM Role List View | [<img src="screenshots/iam-role.1.png" width="200"/>](screenshots/iam-role.1.png) |
+| 6 | IAM Role Summary (AmazonS3ReadOnlyAccess attached) | [<img src="screenshots/iam-role.2.png" width="200"/>](screenshots/iam-role.2.png) |
+| 7 | IAM Trust Policy Configuration | [<img src="screenshots/iam-role.3.png" width="200"/>](screenshots/iam-role.3.png) |
+| 8 | EC2 Role Attachment Verified | [<img src="screenshots/iam-role.4.png" width="200"/>](screenshots/iam-role.4.png) |
+| 9 | S3 Bucket Content Visible via EC2 | [<img src="screenshots/s3-upload.1.png" width="200"/>](screenshots/s3-upload.1.png) |
 
 ---
 
-✅ **This project highlights my ability to apply IAM group policies, enforce access control, and validate permissions through testing in AWS.**
+## ✅ Result
+
+The EC2 instance successfully assumed the IAM role and was able to:
+
+- ☑️ **Read** files from the S3 bucket  
+- ❌ **Denied** upload or delete operations (as expected)
+
+This validated that **AmazonS3ReadOnlyAccess** was enforced properly using IAM best practices.
+
+---
+
+## 💼 Portfolio Value
+
+This project demonstrates practical experience with:
+
+- Real-world IAM architecture  
+- Security-first cloud operations  
+- EC2-to-S3 least privilege enforcement  
+- Documentation using GitHub and Markdown  
+
+---
+
