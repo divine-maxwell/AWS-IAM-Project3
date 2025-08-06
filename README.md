@@ -1,41 +1,78 @@
-# Beginner IAM Project 3 - AWS EC2 with S3 Access
+# 🔐 AWS IAM Project 3 – Group Policy & Least Privilege Enforcement
 
-✅ Launched a t3.micro EC2 instance  
-✅ Created an IAM Role for S3 access and attached it to EC2  
-✅ Uploaded files to S3 from EC2 instance using CLI  
-✅ Verified Least Privilege access control
-
-**Tech Used:** AWS IAM, EC2, S3, CLI  
-**Skills:** Identity-based access control, EC2 IAM Role, S3 Permissions  
+## 📌 Project Overview
+This project demonstrates how to implement **IAM Group-based permissions** using AWS IAM.  
+The goal was to validate the **Principle of Least Privilege** by attaching a read-only S3 policy to a group, adding users to it, and testing access behavior.
 
 ---
 
-## 📸 Screenshots
+## 🛠️ What I Did
+1. Created an IAM group called `Testers`.
+2. Attached the managed policy `AmazonS3ReadOnlyAccess` to the group.
+3. Created IAM users and added them to the group.
+4. Logged in as the test users and performed:
+   - ✅ Read operations on S3
+   - ❌ Write operations (upload/delete) — blocked
+5. Verified permission enforcement through direct AWS Console testing.
 
-1. **ec2-instance.1.png**  
-   ![EC2 Instance Step 1](screenshots/ec2-instance.1.png)
+---
 
-2. **ec2-instance.2.png**  
-   ![EC2 Instance Step 2](screenshots/ec2-instance.2.png)
+## ✅ Test Results
 
-3. **ec2-instance.3.png**  
-   ![EC2 Instance Step 3](screenshots/ec2-instance.3.png)
+| Action Tested             | Result     | Screenshot |
+|---------------------------|------------|------------|
+| IAM Group Created         | ✅ Success  | [📸 View](./screenshots/iam-group-created.png) |
+| Users Added to Group      | ✅ Success  | [📸 View](./screenshots/user-added-group.png) |
+| Group Permissions Verified| ✅ Success  | [📸 View](./screenshots/group-permissions.png) |
+| Read Access to S3         | ✅ Success  | [📸 View](./screenshots/s3-read-success.png) |
+| Upload to S3 Attempt      | ❌ Denied   | [📸 View](./screenshots/s3-upload-blocked.png) |
+| Policy Confirmed in User  | ✅ Verified | [📸 View](./screenshots/policy-verified.png) |
 
-4. **ec2-instance.4.png**  
-   ![EC2 Instance Step 4](screenshots/ec2-instance.4.png)
+---
 
-5. **iam-role.1.png**  
-   ![IAM Role Step 1](screenshots/iam-role.1.png)
+## 🖼️ Screenshot Previews
 
-6. **iam-role.2.png**  
-   ![IAM Role Step 2](screenshots/iam-role.2.png)
+| Description | Preview |
+|-------------|---------|
+| IAM Group Creation | [<img src="./screenshots/iam-group-created.png" width="200"/>](./screenshots/iam-group-created.png) |
+| User Added to Group | [<img src="./screenshots/user-added-group.png" width="200"/>](./screenshots/user-added-group.png) |
+| Group Permissions | [<img src="./screenshots/group-permissions.png" width="200"/>](./screenshots/group-permissions.png) |
+| Policy Verified in User | [<img src="./screenshots/policy-verified.png" width="200"/>](./screenshots/policy-verified.png) |
+| S3 Read Success | [<img src="./screenshots/s3-read-success.png" width="200"/>](./screenshots/s3-read-success.png) |
+| S3 Upload Blocked | [<img src="./screenshots/s3-upload-blocked.png" width="200"/>](./screenshots/s3-upload-blocked.png) |
 
-7. **iam-role.3.png**  
-   ![IAM Role Step 3](screenshots/iam-role.3.png)
+---
 
-8. **iam-role.4.png**  
-   ![IAM Role Step 4](screenshots/iam-role.4.png)
+## 🧰 AWS Services Used
 
-9. **s3-upload.1.png**  
-   ![S3 Upload](screenshots/s3-upload.1.png)
+- **IAM** – Identity and Access Management
+- **S3** – Simple Storage Service (for testing access)
+- **AWS Console** – Used to configure and test
 
+---
+
+## 🔐 Security Concepts Demonstrated
+
+- IAM Group-based Permission Assignment
+- Use of AWS Managed Policies
+- Role-based Access Control (RBAC)
+- Least Privilege Enforcement
+- Access Validation through Simulation
+
+---
+
+## 📁 Project Structure
+
+aws-iam-project3/
+├── README.md
+└── screenshots/
+├── iam-group-created.png
+├── user-added-group.png
+├── group-permissions.png
+├── policy-verified.png
+├── s3-read-success.png
+└── s3-upload-blocked.png
+
+---
+
+✅ **This project highlights my ability to apply IAM group policies, enforce access control, and validate permissions through testing in AWS.**
